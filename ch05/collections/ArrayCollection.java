@@ -106,6 +106,14 @@ public class ArrayCollection<T> implements CollectionInterface<T>
     return (numElements == elements.length);
   }
 
+  public void clear()
+  // Removes all elements from this collection.
+  {
+    numElements = 0;
+    for (int i = 0; i < elements.length; i++)
+      elements[i] = null;
+  }
+
   public boolean isEmpty()
   // Returns true if this collection is empty; otherwise, returns false.
   {

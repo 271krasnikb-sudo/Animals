@@ -13,6 +13,7 @@ public interface CollectionInterface<T>
   boolean isFull();
 
   boolean isEmpty();
+  void clear();
 
   int size();
 }

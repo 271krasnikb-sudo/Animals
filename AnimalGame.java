@@ -5,30 +5,38 @@ import java.io.IOException;
 public class AnimalGame{
     public static void main(String[] args) throws IOException
     {
+        String startChars = "";
         ArrayCollection<String> animals = new ArrayCollection<>(600);
         System.out.println("Welcome to the Animal Game!");
-        String characters = "abcdefghijklmnopqrstuvwxyz";
         Scanner sc = new Scanner(new java.io.File("Animals.txt"));
         while (sc.hasNextLine())
         {
             String animal = sc.nextLine().trim().toLowerCase();
             animals.add(animal);
+            char first = animal.charAt(0);
+            if(startChars.indexOf(first) == -1)
+                startChars += first;
         }
 
-        sc.close();
+      
 
-        int randomIndex = (int) (Math.random() * characters.length());
-        char target = characters.charAt(randomIndex);
-
-        System.out.println("Enter an animal starting with " + target);
-        System.out.println("The game ends when you make a mistake");
-
+        char target;
         Scanner userSc = new Scanner(System.in);
+
+        
         ArrayCollection<String> used = new ArrayCollection<>();
         int count = 0;
         boolean gameOver = false;
         boolean playAgain = true;
+
         while(playAgain) {
+            gameOver = false;
+            used.clear();
+            count = 0;
+            target = startChars.charAt((int) (Math.random() * startChars.length()));
+            System.out.println("Enter an animal starting with " + target);
+            System.out.println("The game ends when you make a mistake");
+           
             while (!gameOver){
                 System.out.println("ANIMAL: ");
                 String guess = userSc.nextLine().trim().toLowerCase();
